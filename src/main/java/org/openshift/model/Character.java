@@ -12,7 +12,15 @@ import static java.util.Arrays.asList;
 public class Character {
 
     //private HashMap allAttributes = new HashMap(18);
-    private int goldpieces, hitpoints, constitution, charisma, wisdom, intelligence, strength, dexterity;
+    private int goldpieces;
+    private int hitpoints;
+    private int constitution;
+    private int charisma;
+    private int wisdom;
+    private int intelligence;
+    private int strength;
+    private int dexterity;
+    private int loc;
     private String race = "";
     private String name = "";
     private String playerclass = "";
@@ -34,6 +42,7 @@ public class Character {
         theMap.put("name", name);
         theMap.put("playerclass", playerclass);
         theMap.put("dexterity", dexterity);
+        theMap.put("loc", loc);
 
         return theMap;
 
@@ -139,6 +148,14 @@ public class Character {
 
     public void setPlayerclass(String playerclass) {
         this.playerclass = playerclass;
+    }
+
+    public int getLoc() {
+        return loc;
+    }
+
+    public void setLoc(int loc) {
+        this.loc = loc;
     }
 
     @Override
