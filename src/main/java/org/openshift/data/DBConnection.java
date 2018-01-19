@@ -30,7 +30,7 @@ public class DBConnection {
     public void afterCreate() {
         System.out.println("just see if we can say anything");
 
-        String host = "mongodb";
+        String host = "172.30.62.167";
 
         if (host == null || "".equals(host)){
             //we are not on openshift
@@ -48,8 +48,8 @@ public class DBConnection {
             //on openshift
             String mongoport = "27017";
             String user = "admin";
-            String password = "83D6L0GtLAjm32dE";
-            String db = "javaws";
+            String password = "y7JxijLiOcP1Elms";
+            String db = "sampledb";
             int port = Integer.decode(mongoport);
 
             Mongo mongo = null;
