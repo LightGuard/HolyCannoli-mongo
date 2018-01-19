@@ -30,7 +30,7 @@ public class DBConnection {
     public void afterCreate() {
         System.out.println("just see if we can say anything");
 
-        String host = System.getenv("OPENSHIFT_MONGODB_DB_HOST");
+        String host = "mongodb";
 
         if (host == null || "".equals(host)){
             //we are not on openshift
@@ -46,10 +46,10 @@ public class DBConnection {
         } else {
 
             //on openshift
-            String mongoport = System.getenv("OPENSHIFT_MONGODB_DB_PORT");
-            String user = System.getenv("OPENSHIFT_MONGODB_DB_USERNAME");
-            String password = System.getenv("OPENSHIFT_MONGODB_DB_PASSWORD");
-            String db = System.getenv("OPENSHIFT_APP_NAME");
+            String mongoport = "27017";
+            String user = "user862";
+            String password = "3UWoSDuv8KOFVvf8";
+            String db = "javaws";
             int port = Integer.decode(mongoport);
 
             Mongo mongo = null;
