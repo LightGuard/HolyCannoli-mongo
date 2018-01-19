@@ -47,8 +47,8 @@ public class DBConnection {
 
             //on openshift
             String mongoport = "27017";
-            String user = "user862";
-            String password = "3UWoSDuv8KOFVvf8";
+            String user = "admin";
+            String password = "83D6L0GtLAjm32dE";
             String db = "javaws";
             int port = Integer.decode(mongoport);
 
