@@ -8,6 +8,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import java.net.UnknownHostException;
 
+
 /**
  * Created by spousty on 10/26/15.
  */
@@ -30,7 +31,7 @@ public class DBConnection {
     public void afterCreate() {
         System.out.println("just see if we can say anything");
 
-        String host = "172.30.62.167";
+        String host = System.getenv("MONGOSERVICE_SERVICE_HOST");
 
         if (host == null || "".equals(host)){
             //we are not on openshift
@@ -46,10 +47,10 @@ public class DBConnection {
         } else {
 
             //on openshift
-            String mongoport = "27017";
-            String user = "admin";
-            String password = "y7JxijLiOcP1Elms";
-            String db = "sampledb";
+            String mongoport = System.getenv("MONGODB_SERVICE_PORT");
+            String user = System.getenv("MONGODB_USER");
+            String password = System.getenv("MONGODB_PASSWORD");
+            String db = System.getenv("MONGODB_DATABASE");
             int port = Integer.decode(mongoport);
 
             Mongo mongo = null;
