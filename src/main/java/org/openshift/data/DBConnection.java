@@ -23,7 +23,6 @@ public class DBConnection {
 
     public DBConnection() {
         super();
-        System.out.println("Why am I getting no output");
 
     }
 
@@ -70,27 +69,7 @@ public class DBConnection {
             //use the client to get a db
             mongoDB = mongoClient.getDB(db);
 
-
-            /*
-            Mongo mongo = null;
-            try {
-                mongo = new Mongo(host , port);
-            } catch (UnknownHostException e) {
-                System.out.println("Couldn't connect to Mongo: " + e.getMessage() + " :: " + e.getClass());
-            }
-
-            mongoDB = mongo.getDB(db);
-
-            if(mongoDB.authenticate(user, password.toCharArray()) == false) {
-                System.out.println("Failed to authenticate DB ");
-            }
-
-            */
         }
-
-
-
-
 
     }
 
