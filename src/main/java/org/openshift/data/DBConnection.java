@@ -31,7 +31,7 @@ public class DBConnection {
     public void afterCreate() {
         System.out.println("just see if we can say anything");
 
-        String host = System.getenv("MONGOSERVICE_SERVICE_HOST");
+        String host = System.getenv("MONGOSDB_SERVICE_HOST");
 
         if (host == null || "".equals(host)){
             //we are not on openshift
