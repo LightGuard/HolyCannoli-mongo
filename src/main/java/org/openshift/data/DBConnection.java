@@ -1,12 +1,12 @@
 package org.openshift.data;
 
-import com.mongodb.DB;
-import com.mongodb.Mongo;
+import com.mongodb.*;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import java.net.UnknownHostException;
+import java.util.Arrays;
 
 
 /**
@@ -31,9 +31,9 @@ public class DBConnection {
     public void afterCreate() {
         System.out.println("just see if we can say anything");
 
-        String host = System.getenv("MONGODB_SERVICE_HOST");
+        String mongoHost = System.getenv("MONGODB_SERVICE_HOST");
 
-        if (host == null || "".equals(host)){
+        if (mongoHost == null || "".equals(mongoHost)){
             //we are not on openshift
             Mongo mongo = null;
             try {
@@ -53,6 +53,25 @@ public class DBConnection {
             String db = System.getenv("MONGODB_DATABASE");
             int port = Integer.decode(mongoport);
 
+            //Make the server connection
+            ServerAddress serverAddress = null;
+            try {
+                serverAddress = new ServerAddress(mongoHost, port);
+            } catch (UnknownHostException e) {
+                System.out.println("Couldn't connect to Mongo: " + e.getMessage() + " :: " + e.getClass());
+            }
+
+            //Make the credentials
+            MongoCredential credential = MongoCredential.createCredential(user, db, password.toCharArray());
+
+            //Use the server connection and the credentials to make a client
+            MongoClient mongoClient = new MongoClient(serverAddress, Arrays.asList(credential));
+
+            //use the client to get a db
+            mongoDB = mongoClient.getDB(db);
+
+
+            /*
             Mongo mongo = null;
             try {
                 mongo = new Mongo(host , port);
@@ -65,6 +84,8 @@ public class DBConnection {
             if(mongoDB.authenticate(user, password.toCharArray()) == false) {
                 System.out.println("Failed to authenticate DB ");
             }
+
+            */
         }
 
 
