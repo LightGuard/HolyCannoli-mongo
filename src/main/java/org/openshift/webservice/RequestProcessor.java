@@ -1,14 +1,23 @@
 package org.openshift.webservice;
 
-import com.mongodb.*;
-import org.openshift.data.DBConnection;
-import org.openshift.model.Character;
-
-import javax.inject.Inject;
-import javax.ws.rs.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.inject.Inject;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+
+import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.WriteConcern;
+import org.openshift.data.DBConnection;
+import org.openshift.model.Character;
 
 /**
  * Created by spousty on 10/26/15.
@@ -65,10 +74,13 @@ public class RequestProcessor {
             System.out.println("threw an exception: " + e.getClass() + " :: " + e.getMessage());
         }
 
-        //now make it look pretty
-        charDBObject.put("mongoid",  charDBObject.getObjectId("_id").toString());
-        charDBObject.remove("_id");
-        return charDBObject;
+//        charDBObject.put("mongoid",  charDBObject.getObjectId("_id").toString());
+//        charDBObject.remove("_id");
+//        return charDBObject;
+
+        final HashMap returnMap = new HashMap();
+        returnMap.put("id", charDBObject.getObjectId("_id").toString());
+        return returnMap;
 
     }
 }
